@@ -1,0 +1,28 @@
+use anchor_lang::prelude::*;
+
+declare_id!("YourProgramID");
+
+#[program]
+pub mod meme_coin_trader {
+    use super::*;
+
+    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
+        msg!("Contract initialized!");
+        Ok(())
+    }
+
+    pub fn execute_trade(ctx: Context<Trade>, amount: u64) -> Result<()> {
+        msg!("Executing trade for {} tokens", amount);
+        // Add trading logic (interacting with Serum or other DEX)
+        Ok(())
+    }
+}
+
+#[derive(Accounts)]
+pub struct Initialize {}
+
+#[derive(Accounts)]
+pub struct Trade {
+    #[account(mut)]
+    pub user: Signer<'info>,
+}
